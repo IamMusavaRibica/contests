@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Farming Contest Results</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.2.3/zephyr/bootstrap.min.css"
+            integrity="sha512-dcTg+pv6j02FTyko5ua8nsnARs/l4u43vmnbeVgkFWB5wdLgfUq4CEotFWOlTE4XK7FfVriWj7BrpqET/a+SJQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Tektur&display=swap" rel="stylesheet" />
+    </head>
+    <style>
+        .glow-row {
+            animation: glowingEffect 4s infinite;
+        }
+
+        @keyframes glowingEffect {
+            0% {
+                box-shadow: 0 0 8px 4px hsla(0, 100%, 30%, 0.4);
+            }
+            10% {
+                box-shadow: 0 0 8px 4px hsla(36, 100%, 40%, 0.6);
+            }
+            20% {
+                box-shadow: 0 0 8px 4px hsla(72, 100%, 50%, 0.8);
+            }
+            30% {
+                box-shadow: 0 0 8px 4px hsla(108, 100%, 50%, 0.8);
+            }
+            40% {
+                box-shadow: 0 0 8px 4px hsla(144, 100%, 50%, 0.8);
+            }
+            50% {
+                box-shadow: 0 0 8px 4px hsla(180, 100%, 50%, 0.8);
+            }
+            60% {
+                box-shadow: 0 0 8px 4px hsla(216, 100%, 50%, 0.8);
+            }
+            70% {
+                box-shadow: 0 0 8px 4px hsla(252, 100%, 50%, 0.8);
+            }
+            80% {
+                box-shadow: 0 0 8px 4px hsla(288, 100%, 50%, 0.8);
+            }
+            90% {
+                box-shadow: 0 0 8px 4px hsla(324, 100%, 40%, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 8px 4px hsla(360, 100%, 30%, 0.4);
+            }
+        }
+    
+        .dark:not(td):not(img *):not(.dark img) {
+            filter: invert(95%) hue-rotate(180deg);
+        }
+        img {
+            filter: none !important;
+        }
+        input::placeholder {
+            text-align: center !important; 
+        }
+
+        .link {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+            text-decoration: none;
+            padding: 0 !important;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        th {
+            padding: 1rem;
+        }
+
+        td {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        
+        tr {
+            vertical-align: middle;
+            overflow-wrap: break-word;
+        }
+
+        html {
+            font-size: 18px;    
+        }
+
+        #leaderboard td:first-child,
+        #leaderboard th:first-child,
+        #leaderboard tr:first-child  {
+            width: 2px !important;
+        }
+        
+        
+        .dropdown-toggle.no-caret::after {
+            display: none !important;
+        }
+        
+        .dropdown-toggle {
+            padding-right: 0.8rem;
+        }
+        
+        .dropdown-toggle .bi-caret-down-fill {
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+    </style>
+    <body style="font-family: 'Kanit', sans-serif; font-weight: 400;">
+        <header class="navbar navbar-expand navbar-light border-bottom user-select-none position-fixed w-100 bg-white" style="z-index: 1; opacity: 90%;">
+            <div class="container-fluid" style="width: 95%;">
+                <a href="#" class="navbar-brand nav-link"><h5 class="my-auto">Jacob's Farming Contests Database</h5></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item d-none d-md-block">
+                        <a href="/contests/leaderboards.html" class="nav-link text-dark">Leaderboards</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a href="/contests/players.html" class="nav-link text-dark">Players</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a href="/contests/donate.html" class="nav-link text-dark active">Donate</a>
+                    </li>
+                    <li class="nav-item" onclick="document.querySelector('html').classList.toggle('dark')"><i class="bi-moon nav-link"></i></li>
+                    <li class="nav-item dropdown d-block d-md-none">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi-list"></i></a>
+                        <ul class="dropdown-menu" style="transform: translateX(-50%);">
+                            <li><a href="/contests/leaderboards.html" class="dropdown-item text-dark">Leaderboards</a></li>
+                            <li><a href="/contests/players.html" class="dropdown-item text-dark">Players</a></li>
+                            <li><a href="/contests/donate.html" class="dropdown-item text-dark active">Donate</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="container-fluid border-warning" style="width: 95%;">
+            <div class="row">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-6 text-center position-absolute start-50 translate-middle-x" style="margin-top: 5rem;">
+                    <h3 class="user-select-none">Support this project</h3>
+                    <div class="card mt-3" id="herearethestuff">
+                        <div class="user-select-none p-2">
+                        <div class="card-body">
+                            <!--h4 class="card-title">What do tips and donations mean to me?</h4-->
+                            <p class="card-text">
+                                Currently, every page you're viewing is hosted on GitHub Pages. It is conveniently free and easy to manage, but it's not possible to write any backend
+                                code, so every visitor just like you loses on cool features such as getting analytics and gaining insight on stats and progress of individual players.
+                            </p>
+                            <p class="card-text">
+                                By getting a <a class="link" href="https://en.wikipedia.org/wiki/Virtual_private_server">VPS</a>, I'll be able to respond to individual requests,
+                                add an API, add a lot more features and enhance overall user experience on this site.
+                            </p>
+                            <p class="card-text">
+                                After donating any amount, you'll get a decoration to your username that everybody can see, as shown in the example below.
+                                It's fully customizable (can be custom font, color, border, etc.), makes you stand out, can be changed anytime and, most importantly, permanent.
+                            </p>
+                            <table class="table border rounded" id="example">
+                                <tbody>
+                                    <tr>
+                                        <th class="col-1">#</th>
+                                        <th class="col">Username</th>
+                                        <th class="col">Collected</th>
+                                        <th class="col">Medal</th>
+                                        <th class="col">Last checked</th>
+                                        <!--th class="col">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </th-->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p class="card-text">
+                                If you have any other questions, don't hesitate to contact me on Discord (username 7o1)
+                            </p>
+                            <!-- h4 class="card-title">Okay, cool. How do I donate?</h4 -->
+                            <a href='https://ko-fi.com/M4M7NARMJ' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+        <script>
+            console.log("This is working");
+            var d = new Date();
+            var monthNames = [
+              "Jan", "Feb", "Mar",
+              "Apr", "May", "Jun",
+              "Jul", "Aug", "Sep",
+              "Oct", "Nov", "Dec"
+            ];
+            function addLeadingZero(value) {
+              return value < 10 ? "0" + value : value;
+            }
+            var formattedDate = d.getDate() + " " +
+                                monthNames[d.getMonth()] + " " +
+                                d.getFullYear() + " " +
+                                addLeadingZero(d.getHours()) + ":" +
+                                addLeadingZero(d.getMinutes());            
+            var tr = document.createElement('tr');
+            tr.setAttribute('class', 'border-bottom tr match glow-row');
+            tr.setAttribute('style', 'font-family: "Tektur", cursive;');
+            tr.innerHTML = '<td>13</td><td><a href="#" class="link">YourNameHere</a></td><td>123456789</td><td style="color: #000000">none</td><td>'+formattedDate+'</td>'
+            document.getElementById('example').appendChild(tr);
+        </script>
+    </body>
+</html>
