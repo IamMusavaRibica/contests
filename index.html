@@ -108,6 +108,7 @@
                 <div class="col-12 col-md-10 col-lg-8 col-xl-6 text-center position-absolute start-50 translate-middle-x" style="margin-top: 5rem;">
                     <div class="card mt-3" id="herearethestuff">
                         <div class="user-select-none p-2">
+                        
                             <div class="card-body">
                                 <h4 class="card-title">Welcome!</h4>
                                 <p class="card-text">
@@ -120,10 +121,41 @@
                                 </p>
                             </div>
                         </div>
+                        <div class="user-select-none p-2">
+                            <div class="container">
+                                <form id="searchcontests">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input type="number" min="100" id="input1" placeholder="    Year" class="text-center form-control text-dark" required/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" min="1" max="12" id="input2" placeholder="    Month" class="text-center form-control text-dark" required/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="number" min="1" max="31" id="input3" placeholder="    Day" class="text-center form-control text-dark" required/>
+                                        </div>
+                                        <div class="col">
+                                            <input type="submit" value="Search" class="btn btn-primary float-center" id="searcher"></button><!--float-end -->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="user-select-none p-2">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+        <script>
+        function searchContest(event) {
+            event.preventDefault();
+            window.location.href = `/contests/db/${this[0].value}/${this[1].value}/${this[2].value}.html`
+        }
+        
+        var id = (a) => document.getElementById(a);
+        id('searchcontests').addEventListener("submit", searchContest.bind([id('input1'), id('input2'), id('input3')]))
+        </script>
     </body>
 </html>
